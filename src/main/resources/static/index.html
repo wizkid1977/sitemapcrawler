@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         function doIt(){
+            $("#result").html("crawling, please wait...");
             $.get("crawl", function(data){
                 $("#result").html(data);
             });
@@ -18,7 +19,7 @@
     <h1>Sitemap Crawler</h1>
     <h3>Created by Nir Gal&copy;</h3>
     
-    <button onclick="doIt()">Start crawling...</button>
+    <button onclick="doIt()">Start crawling</button>
     <div id="result"></div>
 </body>
 </html>
