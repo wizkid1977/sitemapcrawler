@@ -18,7 +18,7 @@ import java.util.Properties;
 @RestController
 public class CrawlerController {
 
-    @GetMapping
+    @GetMapping(path="crawl")
     public String crawler(){
         System.out.println("\n***************************************************************\nStart scan: " + LocalDateTime.now());
         String body = "";
