@@ -9,8 +9,10 @@
     <script>
         function doIt(){
             $("#result").html("<img src='crawling.gif' alt='crawling' />");
+            $("#btnCrawl").prop('disabled', true);
             $.get("crawl", function(data){
                 $("#result").html(data);
+                $("#btnCrawl").prop('disabled', false);
             });
         }
     </script>
@@ -19,7 +21,7 @@
     <h1>Sitemap Crawler</h1>
     <h3>Created by Nir Gal&copy;</h3>
     
-    <button onclick="doIt()">Start crawling</button>
+    <button id="btnCrawl" onclick="doIt()">Start crawling</button>
     <div id="result"></div>
 </body>
 </html>
