@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         function doIt(){
-            $("#result").html("crawling, please wait...");
+            $("#result").html("<img src='crawling.gif' alt='crawling' />");
             $.get("crawl", function(data){
                 $("#result").html(data);
             });
