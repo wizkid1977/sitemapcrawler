@@ -39,7 +39,7 @@ public class CrawlerController {
 
         if (!body.isEmpty()) {
             sendMail(body);
-            return "changes found and mail sent: \n" + body ;
+            return "changes found and mail sent: <br/>\n" + body ;
         }
         return "no changes found...";
     }
@@ -69,7 +69,7 @@ public class CrawlerController {
                     LocalDate dateTime = LocalDate.parse(lastMod.getTextContent().substring(0, 10));
                     LocalDate now = LocalDate.now();
                     if (dateTime.isEqual(now)) {
-                        String line = urlName.getTextContent() + " >> " + lastMod.getNodeName() + ":" + lastMod.getTextContent();
+                        String line = urlName.getTextContent()// + " >> " + lastMod.getNodeName() + ":" + lastMod.getTextContent();
                         System.out.println("changed today!!");
                         body += line + "\n";
                     }
