@@ -18,10 +18,11 @@ import java.util.Properties;
 @RestController
 public class CrawlerController {
 
+    private String body;
     @GetMapping(path="crawl")
     public String crawler(){
         System.out.println("\n***************************************************************\nStart scan: " + LocalDateTime.now());
-        String body = "";
+        body = "";
 
         body += checkUrl("https://www.hackeru.co.il/sitemap-posttype-post.2022.xml");
         body += checkUrl("https://www.hit.ac.il/sitemap.xml");
@@ -38,8 +39,8 @@ public class CrawlerController {
 
 
         if (!body.isEmpty()) {
-            sendMail(body);
-            return "changes found and mail sent: <br/>\n" + body ;
+            //sendMail(body);
+            return "changes found: <br/>\n" + body ;
         }
         return "no changes found...";
     }
@@ -84,9 +85,10 @@ public class CrawlerController {
         }
     }
 
-    private void sendMail(String body) {
+    @GetMapping(path="mail")
+    private void sendMail() {
         // Recipient's email ID needs to be mentioned.
-        String to = "yakirp@johnbryce.co.il;nirg@johnbryce.co.il;";
+        String to = "nirg@johnbryce.co.il";
 
         // Sender's email ID needs to be mentioned
         String from = "WeAreNotSpies@jbh.co.il";
@@ -115,7 +117,7 @@ public class CrawlerController {
         });
 
         // Used to debug SMTP issues
-        session.setDebug(true);
+        session.setDebug(false);
 
         try {
             // Create a default MimeMessage object.
@@ -128,7 +130,7 @@ public class CrawlerController {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("HackerU new posts!");
+            message.setSubject("sitemap crawler");
 
             // Now set the actual message
             message.setText(body);

@@ -13,6 +13,13 @@
             $.get("crawl", function(data){
                 $("#result").html(data);
                 $("#btnCrawl").prop('disabled', false);
+                $("#btnMail").prop('disabled', false);
+            });
+        }
+
+        function mail(){
+            $.get("mail", function(data){
+                alert("mail sent...");
             });
         }
     </script>
@@ -22,6 +29,7 @@
     <h3>Created by Nir Gal&copy;</h3>
     
     <button id="btnCrawl" onclick="doIt()">Start crawling</button>
+    <button id="btnMail" onclick="mail()" disabled>Send Mail</button>
     <div id="result"></div>
 </body>
 </html>
