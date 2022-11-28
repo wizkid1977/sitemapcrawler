@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function doIt(){
+            $("#result").html("<img src='crawling.gif' alt='crawling' />");
+            $("#btnCrawl").prop('disabled', true);
+            $.get("crawl", function(data){
+                $("#result").html(data);
+                $("#btnCrawl").prop('disabled', false);
+                $("#btnMail").prop('disabled', false);
+            });
+        }
+
+        function mail(){
+            $.get("mail", function(data){
+                alert("mail sent...");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Sitemap Crawler</h1>
+    <h3>Created by Nir Gal&copy;</h3>
+    
+    <button id="btnCrawl" onclick="doIt()">Start crawling</button>
+    <button id="btnMail" onclick="mail()" disabled>Send Mail</button>
+    <div id="result"></div>
+</body>
+</html>
